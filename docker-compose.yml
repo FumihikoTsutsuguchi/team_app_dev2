@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - "7070:8080"
+    volumes:
+      - ./backend/src:/var/www
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    volumes:
+      - ./frontend/src:/app
+    command: 'yarn dev'
+    ports:
+      - 3001:3000
+  mysql:
+    image: mysql:8.0
+    ports:
+      - 7001:3306
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: mood
+      MYSQL_ROOT_PASSWORD: password
+volumes:
+  mysql-volume:
