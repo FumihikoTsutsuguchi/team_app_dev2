@@ -20,3 +20,7 @@ docker compose exec mysql bash
 ```
 mysql -u root -p mood
 ```
+* バックエンドコンテナに入る方法
+```
+docker compose exec backend bash
+```
