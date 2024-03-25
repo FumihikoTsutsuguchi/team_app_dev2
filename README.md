@@ -5,7 +5,7 @@
 * コンテナ起動方法
 ルート直下で下記コマンドを実行
 ```
-docker-compose run -w /app --rm frontend npm install
+docker-compose run -w /app --rm frontend yarn install
 ```
 ```
 docker compose up -d --build
