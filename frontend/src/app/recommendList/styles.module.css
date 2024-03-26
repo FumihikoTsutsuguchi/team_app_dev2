@@ -1,0 +1,43 @@
+.recommendList {
+    max-width: 814px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px 10px;
+    margin: 0 auto;
+}
+
+.recommendList li{
+    max-width: 170px;
+    margin-left: 20px;
+    padding: 10px 13px;
+    background-color: #EAEAEA;
+    border-radius: 10px;
+}
+
+.recommendList li h2{
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.recommendList li img{
+    border-radius: 5px;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: #4444;
+    display: grid;
+    place-content: center;
+}
+
+.closeButton {
+    width: 100%;
+    padding: 5px 30px;
+    margin: 0 auto;
+    max-width: 150px;
+    border-radius: 5px;
+    color: white;
+    background-color: #222222;
+}
