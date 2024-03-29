@@ -6,30 +6,45 @@
     margin: 0 auto;
 }
 
-.recommendList li{
+.recommendList li {
     max-width: 170px;
     margin-left: 20px;
     padding: 10px 13px;
-    background-color: #EAEAEA;
+    background-color: #eaeaea;
     border-radius: 10px;
 }
 
-.recommendList li h2{
+.recommendList li h2 {
     font-size: 18px;
     font-weight: 500;
     margin-top: 10px;
 }
 
-.recommendList li img{
+.recommendList li img {
     border-radius: 5px;
 }
 
 .modal {
     position: fixed;
     inset: 0;
-    background-color: #4444;
+    width: 100%;
+    height: 100vh;
+    animation: bgGradient 3s ease infinite;
     display: grid;
     place-content: center;
+    background-size: 200% 200% !important;
+}
+
+@keyframes bgGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .closeButton {
