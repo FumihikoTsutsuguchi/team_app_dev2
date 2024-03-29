@@ -10,7 +10,7 @@ export default function RecommendList() {
     const [showModal, setShowModal] = useState(false);
     const [modalBackground, setModalBackground] = useState(null);
     const [gradientAngle, setGradientAngle] = useState(45);
-    const accessToken = "「ご自身のTokenを入力してください」";
+    const accessToken = "「ご自身のアクセストークンを入力してください」";
 
     useEffect(() => {
         if (accessToken) {
