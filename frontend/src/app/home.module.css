@@ -1,7 +1,6 @@
 /* サイト全体 */
 .mainWrapper {
-  padding: 80px 0 0;
-  /* background-color: #f5f5f7; */
+  padding: 100px 0 0;
   height: 100vh;
 }
 
@@ -11,10 +10,12 @@
   justify-content: space-between;
   display: flex;
   width: 100%;
-  height: 80px;
+  height: 100px;
   align-items: center;
   padding: 0 30px;
-  border-bottom: 1px solid #313131;
+  box-shadow: 0px 10px 10px -6px rgba(71, 71, 71, 0.1);
+  background-color: #fff;
+
 }
 
 .navTitle {
@@ -27,9 +28,9 @@
   align-items: center;
   width: 100%;
   font-size: 1.5rem;
+
 }
 
-/* 右上トグル */
 .toggle {
   border: 1px solid #313131;
   border-radius: 50px;
@@ -65,7 +66,8 @@
 .headline {
   font-size: 24px;
   /* font-weight: bold; */
-  padding: 80px 0 0px;
+  padding: 30px 0 0px;
+  color: #313131;
 }
 
 .doneButton {
@@ -157,4 +159,19 @@
 .selectedMoodListOrange {
   background-color: #FFE4C3;
   border: 2px solid #313131;
+}
+
+
+/* フッター */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 45px;
+  background-color: #acbcc7;
+  text-align: center;
+  justify-content: center;
+  padding: 10px 0px;
+  font-size: 14px;
+
 }

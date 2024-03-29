@@ -16,27 +16,36 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <nav className={styles.navWrapper}>
           <div className={styles.navInner}>
+            {/* <div></div> 左端の空の要素 */}
             <h1 className={styles.navTitle}>
-              <a href="/" className={styles.navTitle} >
+              <a href="/" className={styles.navTitle}>
                 <Image
                   src={"/logo_dev2.png"}
-                  width={200}
+                  width={250}
                   height={100}
                   alt="Icon"
                   className="plusIcon"
                 />
               </a>
             </h1>
-            <button className={styles.toggle}>
-              <span className={styles.dot}></span>
-              <span className={styles.dot}></span>
-              <span className={styles.dot}></span>
-            </button>
+            <div className={styles.toggleWrapper}>
+              <button className={styles.toggle}>
+                <span className={styles.dot}></span>
+                <span className={styles.dot}></span>
+                <span className={styles.dot}></span>
+              </button>
+            </div>
           </div>
         </nav>
+
         <main className={styles.mainWrapper}>
           {children}
         </main>
+        <footer className={styles.footer}>
+          <p>
+            Created by チーム寅
+          </p>
+        </footer>
       </body>
     </html>
   );
