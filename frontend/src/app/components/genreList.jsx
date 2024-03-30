@@ -1,19 +1,28 @@
 "use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import styles from '../home.module.css';
+import { useState } from "react";
+import Image from "next/image";
+import styles from "../home.module.css";
 
-export function GenreButton({ defaultClass, selectedClass, label }) {
+export function GenreButton({
+  defaultClass,
+  selectedClass,
+  label,
+  value,
+  onClick,
+}) {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
     setIsSelected(!isSelected);
+    onClick(value);
   };
 
   return (
     <button
-      className={`${isSelected ? selectedClass : defaultClass} ${styles.buttonStyle}`}
+      className={`${isSelected ? selectedClass : defaultClass} ${
+        styles.buttonStyle
+      }`}
       onClick={handleClick}
     >
       <span>{label}</span>
@@ -28,25 +37,144 @@ export function GenreButton({ defaultClass, selectedClass, label }) {
   );
 }
 
-export function GenreList() {
+export function GenreList({ onGenreSelect }) {
+  const [selectedGenre, setSelectedGenre] = useState("");
+
+  const handleGenreSelect = (genre) => {
+    setSelectedGenre(genre);
+    onGenreSelect(genre);
+  };
+
   return (
     <div className={styles.moodListWrapper}>
-      <GenreButton defaultClass={styles.moodListYellow} selectedClass={styles.selectedMoodListYellow} label="pop" />
-      <GenreButton defaultClass={styles.moodListOrange} selectedClass={styles.selectedMoodListOrange} label="rock" />
-      <GenreButton defaultClass={styles.moodListBlue} selectedClass={styles.selectedMoodListPink} label="jazz" />
-      <GenreButton defaultClass={styles.moodListPurple} selectedClass={styles.selectedMoodListPurple} label="alternative" />
-      <GenreButton defaultClass={styles.moodListPink} selectedClass={styles.selectedMoodListPink} label="anime" />
-      <GenreButton defaultClass={styles.moodListGreen} selectedClass={styles.selectedMoodListGreen} label="chill" />
-      <GenreButton defaultClass={styles.moodListOrange} selectedClass={styles.selectedMoodListOrange} label="club" />
-      <GenreButton defaultClass={styles.moodListYellow} selectedClass={styles.selectedMoodListYellow} label="country" />
-      <GenreButton defaultClass={styles.moodListYellow} selectedClass={styles.selectedMoodListYellow} label="dance" />
-      <GenreButton defaultClass={styles.moodListOrange} selectedClass={styles.selectedMoodListOrange} label="punk" />
-      <GenreButton defaultClass={styles.moodListGreen} selectedClass={styles.selectedMoodListGreen} label="hip-hop" />
-      <GenreButton defaultClass={styles.moodListPurple} selectedClass={styles.selectedMoodListPurple} label="heavy-metal" />
-      <GenreButton defaultClass={styles.moodListYellow} selectedClass={styles.selectedMoodListYellow} label="j-pop" />
-      <GenreButton defaultClass={styles.moodListPurple} selectedClass={styles.selectedMoodListPurple} label="j-rock" />
-      <GenreButton defaultClass={styles.moodListPink} selectedClass={styles.selectedMoodListPink} label="k-pop" />
-      <GenreButton defaultClass={styles.moodListPurple} selectedClass={styles.selectedMoodListPurple} label="soul" />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "pop"}
+        defaultClass={styles.moodListYellow}
+        selectedClass={styles.selectedMoodListYellow}
+        label="pop"
+        value="pop"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "rock"}
+        defaultClass={styles.moodListOrange}
+        selectedClass={styles.selectedMoodListOrange}
+        label="rock"
+        value="rock"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "jazz"}
+        defaultClass={styles.moodListBlue}
+        selectedClass={styles.selectedMoodListPink}
+        label="jazz"
+        value="jazz"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "alternative"}
+        defaultClass={styles.moodListPurple}
+        selectedClass={styles.selectedMoodListPurple}
+        label="alternative"
+        value="alternative"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "anime"}
+        defaultClass={styles.moodListPink}
+        selectedClass={styles.selectedMoodListPink}
+        label="anime"
+        value="anime"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "chill"}
+        defaultClass={styles.moodListGreen}
+        selectedClass={styles.selectedMoodListGreen}
+        label="chill"
+        value="chill"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "club"}
+        defaultClass={styles.moodListOrange}
+        selectedClass={styles.selectedMoodListOrange}
+        label="club"
+        value="club"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "country"}
+        defaultClass={styles.moodListYellow}
+        selectedClass={styles.selectedMoodListYellow}
+        label="country"
+        value="country"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "dance"}
+        defaultClass={styles.moodListYellow}
+        selectedClass={styles.selectedMoodListYellow}
+        label="dance"
+        value="dance"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "punk"}
+        defaultClass={styles.moodListOrange}
+        selectedClass={styles.selectedMoodListOrange}
+        label="punk"
+        value="punk"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "hip-hop"}
+        defaultClass={styles.moodListGreen}
+        selectedClass={styles.selectedMoodListGreen}
+        label="hip-hop"
+        value="hip-hop"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "heavy-metal"}
+        defaultClass={styles.moodListPurple}
+        selectedClass={styles.selectedMoodListPurple}
+        label="heavy-metal"
+        value="heavy-metal"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "j-pop"}
+        defaultClass={styles.moodListYellow}
+        selectedClass={styles.selectedMoodListYellow}
+        label="j-pop"
+        value="j-pop"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "j-rock"}
+        defaultClass={styles.moodListPurple}
+        selectedClass={styles.selectedMoodListPurple}
+        label="j-rock"
+        value="j-rock"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "k-pop"}
+        defaultClass={styles.moodListPink}
+        selectedClass={styles.selectedMoodListPink}
+        label="k-pop"
+        value="k-pop"
+      />
+      <GenreButton
+        onClick={handleGenreSelect}
+        isSelected={selectedGenre === "soul"}
+        defaultClass={styles.moodListPurple}
+        selectedClass={styles.selectedMoodListPurple}
+        label="soul"
+        value="soul"
+      />
     </div>
   );
 }
