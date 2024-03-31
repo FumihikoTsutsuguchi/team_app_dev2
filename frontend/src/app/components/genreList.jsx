@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../home.module.css";
 
@@ -38,18 +38,30 @@ export function GenreButton({
 }
 
 export function GenreList({ onGenreSelect }) {
-  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedGenres, setSelectedGenres] = useState([]);
 
   const handleGenreSelect = (genre) => {
-    setSelectedGenre(genre);
-    onGenreSelect(genre);
+    //setSelectedGenre(genre);
+    //onGenreSelect(genre);
+    setSelectedGenres((prevSelectedGenres) => {
+      if (prevSelectedGenres.includes(genre)) {
+        return prevSelectedGenres.filter((g) => g !== genre);
+      } else {
+        return [...prevSelectedGenres, genre];
+      }
+    });
+    //onGenreSelect(genre);
   };
+
+  useEffect(() => {
+    onGenreSelect(selectedGenres);
+  }, [selectedGenres]);
 
   return (
     <div className={styles.moodListWrapper}>
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "pop"}
+        isSelected={selectedGenres.includes("pop")}
         defaultClass={styles.moodListYellow}
         selectedClass={styles.selectedMoodListYellow}
         label="pop"
@@ -57,7 +69,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "rock"}
+        isSelected={selectedGenres.includes("rock")}
         defaultClass={styles.moodListOrange}
         selectedClass={styles.selectedMoodListOrange}
         label="rock"
@@ -65,7 +77,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "jazz"}
+        isSelected={selectedGenres.includes("jazz")}
         defaultClass={styles.moodListBlue}
         selectedClass={styles.selectedMoodListPink}
         label="jazz"
@@ -73,7 +85,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "alternative"}
+        isSelected={selectedGenres.includes("alternative")}
         defaultClass={styles.moodListPurple}
         selectedClass={styles.selectedMoodListPurple}
         label="alternative"
@@ -81,7 +93,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "anime"}
+        isSelected={selectedGenres.includes("anime")}
         defaultClass={styles.moodListPink}
         selectedClass={styles.selectedMoodListPink}
         label="anime"
@@ -89,7 +101,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "chill"}
+        isSelected={selectedGenres.includes("chill")}
         defaultClass={styles.moodListGreen}
         selectedClass={styles.selectedMoodListGreen}
         label="chill"
@@ -97,7 +109,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "club"}
+        isSelected={selectedGenres.includes("club")}
         defaultClass={styles.moodListOrange}
         selectedClass={styles.selectedMoodListOrange}
         label="club"
@@ -105,7 +117,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "country"}
+        isSelected={selectedGenres.includes("country")}
         defaultClass={styles.moodListYellow}
         selectedClass={styles.selectedMoodListYellow}
         label="country"
@@ -113,7 +125,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "dance"}
+        isSelected={selectedGenres.includes("dance")}
         defaultClass={styles.moodListYellow}
         selectedClass={styles.selectedMoodListYellow}
         label="dance"
@@ -121,7 +133,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "punk"}
+        isSelected={selectedGenres.includes("punk")}
         defaultClass={styles.moodListOrange}
         selectedClass={styles.selectedMoodListOrange}
         label="punk"
@@ -129,7 +141,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "hip-hop"}
+        isSelected={selectedGenres.includes("hip-hop")}
         defaultClass={styles.moodListGreen}
         selectedClass={styles.selectedMoodListGreen}
         label="hip-hop"
@@ -137,7 +149,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "heavy-metal"}
+        isSelected={selectedGenres.includes("heavy-metal")}
         defaultClass={styles.moodListPurple}
         selectedClass={styles.selectedMoodListPurple}
         label="heavy-metal"
@@ -145,7 +157,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "j-pop"}
+        isSelected={selectedGenres.includes("j-pop")}
         defaultClass={styles.moodListYellow}
         selectedClass={styles.selectedMoodListYellow}
         label="j-pop"
@@ -153,7 +165,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "j-rock"}
+        isSelected={selectedGenres.includes("j-rock")}
         defaultClass={styles.moodListPurple}
         selectedClass={styles.selectedMoodListPurple}
         label="j-rock"
@@ -161,7 +173,7 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "k-pop"}
+        isSelected={selectedGenres.includes("k-pop")}
         defaultClass={styles.moodListPink}
         selectedClass={styles.selectedMoodListPink}
         label="k-pop"
@@ -169,11 +181,11 @@ export function GenreList({ onGenreSelect }) {
       />
       <GenreButton
         onClick={handleGenreSelect}
-        isSelected={selectedGenre === "soul"}
+        isSelected={selectedGenres.includes("全ジャンル")}
         defaultClass={styles.moodListPurple}
         selectedClass={styles.selectedMoodListPurple}
-        label="soul"
-        value="soul"
+        label="全ジャンル"
+        value="全ジャンル"
       />
     </div>
   );
