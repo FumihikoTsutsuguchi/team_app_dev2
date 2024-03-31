@@ -4,7 +4,9 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import Color, { Palette } from "color-thief-react";
 import { useSearchParams } from "next/navigation";
+
 import Link from "next/link";
+
 
 export default function RecommendList() {
   const [tracks, setTracks] = useState([]);
@@ -13,7 +15,9 @@ export default function RecommendList() {
   const [modalBackground, setModalBackground] = useState(null);
   const [gradientAngle, setGradientAngle] = useState(45);
   const [isLoading, setIsLoading] = useState(true);
+
   const accessToken = "アクセストークンを入力してください";
+
 
   const searchParams = useSearchParams();
 
@@ -22,8 +26,10 @@ export default function RecommendList() {
 
   let url = `https://api.spotify.com/v1/recommendations?limit=12&seed_genres=${genre}`;
 
+
   if (genre.includes("全ジャンル")) {
     url = `https://api.spotify.com/v1/recommendations?limit=12&seed_genres=country,anime,pop,jazz,rock`;
+
   }
 
   switch (mood) {
@@ -37,13 +43,17 @@ export default function RecommendList() {
       url += `&min_tempo=60&max_tempo=90&min_energy=0&max_energy=0.4&max_loudness=-10`;
       break;
     case "うれしい":
+
       url += `&min_valence=0.7&mode=1`;
+
       break;
     case "ノスタルジック":
       url += `&mode=0`;
       break;
     case "前向き":
+
       url += `&min_valence=0.7&mode=1&min_energy=0.6`;
+
       break;
     case "泣ける":
       url += `&max_valence=0.4&mode=0`;
@@ -52,7 +62,9 @@ export default function RecommendList() {
       url += `&min_valence=0.7&mode=1`;
       break;
     case "落ち着く":
+
       url += `&max_tempo=90&max_energy=0.4&max_loudness=-10`;
+
       break;
     case "ダンス":
       url += `&danceability=1.0`;
@@ -62,6 +74,8 @@ export default function RecommendList() {
   useEffect(() => {
     if (accessToken) {
       const fetchTracks = async () => {
+
+
         setIsLoading(true); // データの取得前にローディング状態をtrueに設定
 
         try {
@@ -100,6 +114,7 @@ export default function RecommendList() {
   };
 
   if (isLoading) {
+
     return (
       <div className="wrapper4">
         <div id="preloader_4">
@@ -111,6 +126,8 @@ export default function RecommendList() {
         </div>
       </div>
     );
+
+
   }
 
   return (
@@ -127,9 +144,11 @@ export default function RecommendList() {
           </li>
         ))}
       </ul>
+
       <div>
         <Link href="/">戻る</Link>
         <button onClick={() => window.location.reload()}>更新</button>
+
       </div>
       {showModal && (
         <>
@@ -151,7 +170,9 @@ export default function RecommendList() {
               className={styles.closeButton}
               onClick={() => setShowModal(false)}
             >
+
               CLOSE
+
             </button>
           </div>
           <Palette
