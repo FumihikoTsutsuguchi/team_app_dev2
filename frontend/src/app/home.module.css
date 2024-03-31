@@ -1,7 +1,6 @@
 /* サイト全体 */
 .mainWrapper {
   padding: 100px 0 0;
-  height: 100vh;
 }
 
 /* ナビゲーション */
@@ -68,7 +67,7 @@
   font-family: "fot-udkakugo-large-pr6n", sans-serif;
   font-weight: 700;
   font-style: normal;
-  padding: 30px 0 0px;
+  margin-top: 45px;
   color: #333;
 }
 
@@ -85,8 +84,7 @@
 .moodListWrapper {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
-  padding: 30px 0;
+  margin: 20px auto 0;
 }
 
 
@@ -166,6 +164,8 @@
 
 /* フッター */
 .footer {
+  position: fixed;
+  bottom: 0;
   width: 100%;
   height: 45px;
   background-color: #acbcc7;
@@ -177,6 +177,7 @@
 }
 
 .area {
+  position: relative;
   width: 100%;
 }
 
