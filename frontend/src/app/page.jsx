@@ -8,21 +8,26 @@ import { useState } from "react";
 
 export default function Home() {
   const [selectedMood, setSelectedMood] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedGenres, setSelectedGenres] = useState([]);
 
   const handleDecisionClick = () => {
-    if (selectedMood && selectedGenre) {
-      window.location.href = `http://localhost:3001/recommendList/?mood=${selectedMood}&genre=${selectedGenre}`;
+    if (selectedMood && selectedGenres.length > 0) {
+      const genresQueryParam = selectedGenres.join(",");
+      window.location.href = `http://localhost:3001/recommendList/?mood=${selectedMood}&genre=${genresQueryParam}`;
     }
   };
 
   return (
     <div className={styles.area}>
       <div className={styles.home}>
-        <h2 className={styles.headline}>なりたい気分を選んでください</h2>
+        <h2 className={styles.headline}>
+          なりたい気分を選んでください<small>(※１つ)</small>
+        </h2>
         <MoodList onMoodSelect={setSelectedMood} />
-        <h2 className={styles.headline}>ジャンルを選んでください</h2>
-        <GenreList onGenreSelect={setSelectedGenre} />
+        <h2 className={styles.headline}>
+          ジャンルを選んでください<small>(※複数可)</small>
+        </h2>
+        <GenreList onGenreSelect={(genres) => setSelectedGenres(genres)} />
         <button className={styles.doneButton} onClick={handleDecisionClick}>
           決定
         </button>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import Color, { Palette } from "color-thief-react";
 import { useSearchParams } from "next/navigation";
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function RecommendList() {
   const [tracks, setTracks] = useState([]);
@@ -13,8 +13,9 @@ export default function RecommendList() {
   const [modalBackground, setModalBackground] = useState(null);
   const [gradientAngle, setGradientAngle] = useState(45);
   const [isLoading, setIsLoading] = useState(true);
-  const accessToken = "ご自身のトークンを入力";
-
+  //const accessToken = "ご自身のトークンを入力";
+  const accessToken =
+    "BQDzrlWwu51cbpyv0Jfdi_DogE4sfcXcdnppHazwhLAkjuT2ea08UDs5oaHjNnVR_WMFaB1egIb2VQ6GXuqejggOkSPytrj8tKw72-3b-xz8jp_SQumQ6SvKxLRXNZEKFL6e0U3NGf5UfoFoYvBakh90vJh3P0V0YPvl2plw07Hz8VwGS6VU8_b4XuAthdNxS5RLFqEMoDSTlYBAza9xyD2Dd6lzTb_Y2dhQTRi9BEa7g8KN-F9k2AEgrNG0l_CE-hWYmEqEc5nR8QW7iCDVdATi";
   const searchParams = useSearchParams();
 
   const mood = searchParams.get("mood");
@@ -22,8 +23,8 @@ export default function RecommendList() {
 
   let url = `https://api.spotify.com/v1/recommendations?limit=12&seed_genres=${genre}`;
 
-  if (genre == "instrumentalness") {
-    url = `https://api.spotify.com/v1/recommendations?limit=12&seed_tracks=5Iy2Jj87Ha0C0IBlNE1I4y&min_instrumentalness=0.7`;
+  if (genre.includes("全ジャンル")) {
+    url = `https://api.spotify.com/v1/recommendations?limit=12&seed_genres=country,anime,pop,jazz,rock`;
   }
 
   switch (mood) {
@@ -37,13 +38,13 @@ export default function RecommendList() {
       url += `&min_tempo=60&max_tempo=90&min_energy=0&max_energy=0.4&max_loudness=-10`;
       break;
     case "うれしい":
-      url += `&min_valence=0.7`;
+      url += `&min_valence=0.7&mode=1`;
       break;
     case "ノスタルジック":
       url += `&mode=0`;
       break;
     case "前向き":
-      url += `&min_valence=0.7&mode=1`;
+      url += `&min_valence=0.7&mode=1&min_energy=0.6`;
       break;
     case "泣ける":
       url += `&max_valence=0.4&mode=0`;
@@ -52,7 +53,7 @@ export default function RecommendList() {
       url += `&min_valence=0.7&mode=1`;
       break;
     case "落ち着く":
-      url += `&min_tempo=60&max_tempo=90&max_energy=0.4&max_loudness=-10`;
+      url += `&max_tempo=90&max_energy=0.4&max_loudness=-10`;
       break;
     case "ダンス":
       url += `&danceability=1.0`;
@@ -62,7 +63,6 @@ export default function RecommendList() {
   useEffect(() => {
     if (accessToken) {
       const fetchTracks = async () => {
-
         setIsLoading(true); // データの取得前にローディング状態をtrueに設定
 
         try {
@@ -101,7 +101,11 @@ export default function RecommendList() {
   };
 
   if (isLoading) {
-    return <div className={styles.load}><span className={styles.spinnerLoader}></span></div>;
+    return (
+      <div className={styles.load}>
+        <span className={styles.spinnerLoader}></span>
+      </div>
+    );
   }
 
   return (
@@ -119,13 +123,8 @@ export default function RecommendList() {
         ))}
       </ul>
       <div className={styles.buttonLinks}>
-        <Link href="/">
-            戻る
-        </Link>
-        <button onClick={() => window.location.reload()}>
-            更新
-        </button>
-
+        <Link href="/">戻る</Link>
+        <button onClick={() => window.location.reload()}>更新</button>
       </div>
       {showModal && (
         <>
