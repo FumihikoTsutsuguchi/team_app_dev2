@@ -13,7 +13,7 @@ export default function RecommendList() {
   const [modalBackground, setModalBackground] = useState(null);
   const [gradientAngle, setGradientAngle] = useState(45);
   const [isLoading, setIsLoading] = useState(true);
-  const accessToken = "BQD2WHMCtl7q8vit3FoaZuKK8PBYJ9hhqHeIhEIm8fOleMon_5DGbhat2cqDezdzG97EO9IUFSuPVIKH8FKZnGnXlqGijtuTNzbiPeBLbXKgsOc8aP8_cRBwJoHjSdGGNq7pTPd93BPAleGbCx1I5orvRbz3R9W9qPD4Q6kA__OVJokffcznhSDhyZdkFGZowxafDvXxY9u_tAD2P4H551Ba8FoBvSyX2eo_6aM5KgWNH61zp0Xp7IPsHB-T26332SUceeZH5Qbv_tV0ZI0rfwix";
+  const accessToken = "ご自身のトークンを入力";
 
   const searchParams = useSearchParams();
 
@@ -101,7 +101,7 @@ export default function RecommendList() {
   };
 
   if (isLoading) {
-    return (<div className="wrapper4"><div id="preloader_4"><span></span><span></span><span></span><span></span><span></span></div></div>)
+    return <div className={styles.load}><span className={styles.spinnerLoader}></span></div>;
   }
 
   return (
@@ -118,7 +118,7 @@ export default function RecommendList() {
           </li>
         ))}
       </ul>
-      <div>
+      <div className={styles.buttonLinks}>
         <Link href="/">
             戻る
         </Link>
@@ -147,7 +147,7 @@ export default function RecommendList() {
               className={styles.closeButton}
               onClick={() => setShowModal(false)}
             >
-              CLOSE
+              閉じる
             </button>
           </div>
           <Palette
